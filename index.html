@@ -5,21 +5,76 @@
 <title>Point Coffee Space</title>
 
 <style>
-body{font-family:sans-serif;background:#faf8f4;color:#2c2419}
-.menu-item{margin:5px 0}
-button{margin:5px;padding:6px 12px}
+body{
+  margin:0;
+  font-family: 'Segoe UI', sans-serif;
+  background:#faf8f4;
+  color:#2c2419;
+}
+
+/* NAV */
+nav{
+  display:flex;
+  justify-content:space-between;
+  padding:15px 30px;
+  background:white;
+  border-bottom:1px solid #ddd;
+}
+
+/* HERO */
+.hero{
+  text-align:center;
+  padding:60px 20px;
+}
+
+.hero h1{
+  font-size:36px;
+}
+
+/* MENU */
+.menu{
+  max-width:700px;
+  margin:auto;
+  padding:20px;
+}
+
+.menu-item{
+  display:flex;
+  justify-content:space-between;
+  margin:8px 0;
+}
+
+input{
+  width:45%;
+  padding:6px;
+}
+
+button{
+  margin:5px;
+  padding:6px 12px;
+  cursor:pointer;
+}
 </style>
 
 </head>
 
 <body>
 
-<h1>POINT Coffee Space</h1>
+<nav>
+  <h2>POINT Coffee Space</h2>
+</nav>
 
-<button onclick="addItem()">เพิ่มเมนู</button>
-<button onclick="saveMenu()">💾 บันทึก</button>
+<div class="hero">
+  <h1>Welcome to Point Coffee</h1>
+  <p>Fresh coffee. Cozy space.</p>
+</div>
 
-<div id="menu-display"></div>
+<div class="menu">
+  <button onclick="addItem()">เพิ่มเมนู</button>
+  <button onclick="saveMenu()">💾 บันทึก</button>
+
+  <div id="menu-display"></div>
+</div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
@@ -34,15 +89,16 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// ===== ข้อมูล =====
+// DATA
 let menuData = [
   {name:"Espresso",price:"55"},
-  {name:"Americano",price:"60"}
+  {name:"Americano",price:"60"},
+  {name:"Latte",price:"75"}
 ];
 
-// ===== แสดง =====
+// UI
 function renderMenu(){
-  const el=document.getElementById("menu-display");
+  const el = document.getElementById("menu-display");
   el.innerHTML = menuData.map((m,i)=>`
     <div class="menu-item">
       <input value="${m.name}" onchange="updateName(${i},this.value)">
@@ -51,7 +107,7 @@ function renderMenu(){
   `).join("");
 }
 
-// ===== แก้ =====
+// ACTION
 function addItem(){
   menuData.push({name:"เมนูใหม่",price:"0"});
   renderMenu();
@@ -60,7 +116,7 @@ function addItem(){
 function updateName(i,v){menuData[i].name=v;}
 function updatePrice(i,v){menuData[i].price=v;}
 
-// ===== Firebase =====
+// FIREBASE
 async function saveMenu(){
   await setDoc(doc(db,"menu","main"),{
     data:menuData
@@ -81,11 +137,11 @@ async function loadMenu(){
 
 loadMenu();
 
-// ===== ให้ปุ่มทำงาน =====
-window.addItem=addItem;
-window.saveMenu=saveMenu;
-window.updateName=updateName;
-window.updatePrice=updatePrice;
+// FIX BUTTON
+window.addItem = addItem;
+window.saveMenu = saveMenu;
+window.updateName = updateName;
+window.updatePrice = updatePrice;
 
 </script>
 
