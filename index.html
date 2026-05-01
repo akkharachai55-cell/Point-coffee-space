@@ -211,7 +211,8 @@
       <button class="btn-cancel" onclick="closeEditor('gallery-editor')">ยกเลิก</button>
     </div>
   </div>
-</div>
+</div
+  <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
@@ -379,6 +380,8 @@ async function saveMenu(){
     menuData = docSnap.data().data;
   }
 }
+  }
+}
   renderMenu();
   closeEditor('menu-editor');
 }
@@ -402,6 +405,6 @@ loadMenu().then(()=>{
   renderMenu();
   renderGallery();
 });
-
+</script>
   
   
