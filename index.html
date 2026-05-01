@@ -402,5 +402,15 @@ loadMenu().then(()=>{
   renderMenu();
   renderGallery();
 });
+// ===== FIX เมนูคลิกไม่ได้ =====
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
 
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+
+    const page = link.getAttribute('data-page');
+    document.getElementById(page).classList.add('active');
+  });
+});
   
