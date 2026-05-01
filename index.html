@@ -213,7 +213,6 @@
     </div>
   </div>
 </div>
-
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
@@ -227,25 +226,28 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// ===== DATA =====
+// ===== MENU DATA =====
 let menuData = [
   {
     cat: "Espresso-Based",
     items: [
-      { name: "Espresso", price: "55" },
-      { name: "Americano", price: "60" }
+      { name: "Espresso", desc: "เข้มข้น หอมกลม", price: "55" },
+      { name: "Americano", desc: "เอสเพรสโซ่ผสมน้ำร้อน", price: "60" }
     ]
   }
 ];
 
-// ===== RENDER =====
+// ===== RENDER MENU =====
 function renderMenu() {
   const el = document.getElementById("menu-display");
   el.innerHTML = menuData.map(cat => `
-    <div>
-      <h3>${cat.cat}</h3>
+    <div class="menu-category">
+      <div class="cat-title">${cat.cat}</div>
       ${cat.items.map(item => `
-        <div>${item.name} - ฿${item.price}</div>
+        <div class="menu-item">
+          <div>${item.name}</div>
+          <div>฿${item.price}</div>
+        </div>
       `).join("")}
     </div>
   `).join("");
@@ -274,5 +276,6 @@ async function saveMenu() {
 // ===== GLOBAL =====
 window.saveMenu = saveMenu;
 
+// ===== START =====
 loadMenu();
 </script>
