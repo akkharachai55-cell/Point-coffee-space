@@ -212,8 +212,18 @@
     </div>
   </div>
 </div>
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyDoYF1lZcMFMovJ8QGlfxR6lvPgb0Orf0",
+  authDomain: "point-coffee-1329f.firebaseapp.com",
+  projectId: "point-coffee-1329f",
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+<script type="module">
 let menuData = [
   {cat:"Espresso-Based",items:[
     {name:"Espresso",desc:"เข้มข้น หอมกลม",price:"55"},
@@ -347,11 +357,31 @@ function addItem(ci){menuData[ci].items.push({name:'',desc:'',price:''});openMen
 function delItem(ci,ii){menuData[ci].items.splice(ii,1);openMenuEditor();}
 function addCategory(){menuData.push({cat:'หมวดใหม่',items:[]});openMenuEditor();}
 
-function saveMenu(){
+async function saveMenu(){
   menuData.forEach((cat,ci)=>{
     const el=document.getElementById('cat-name-'+ci);
     if(el) cat.cat=el.value;
   });
+
+  await setDoc(doc(db,"menu","main"),{
+    data:menuData
+  });
+
+  renderMenu();
+  closeEditor('menu-editor');
+}
+  menuData.forEach((cat,ci)=>{
+    const el=document.getElementById('cat-name-'+ci);
+    if(el) cat.cat=el.value;
+  });
+  async function loadMenu(){
+  const docRef = doc(db,"menu","main");
+  const docSnap = await getDoc(docRef);
+
+  if(docSnap.exists()){
+    menuData = docSnap.data().data;
+  }
+}
   renderMenu();
   closeEditor('menu-editor');
 }
@@ -371,6 +401,8 @@ function delGallery(i){galleryData.splice(i,1);openGalleryEditor();}
 function saveGallery(){renderGallery();closeEditor('gallery-editor');}
 function closeEditor(id){document.getElementById(id).classList.remove('open');}
 
-renderMenu();
-renderGallery();
-</script>
+loadMenu().then(()=>{
+  renderMenu();
+  renderGallery();
+});
+
