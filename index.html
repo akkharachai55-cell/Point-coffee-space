@@ -21,7 +21,6 @@ button{margin:5px;padding:6px 12px}
 
 <div id="menu-display"></div>
 
-<!-- ================= Firebase ================= -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
@@ -35,13 +34,13 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// ====== ข้อมูล ======
+// ===== ข้อมูล =====
 let menuData = [
   {name:"Espresso",price:"55"},
   {name:"Americano",price:"60"}
 ];
 
-// ====== แสดง ======
+// ===== แสดง =====
 function renderMenu(){
   const el=document.getElementById("menu-display");
   el.innerHTML = menuData.map((m,i)=>`
@@ -52,7 +51,7 @@ function renderMenu(){
   `).join("");
 }
 
-// ====== แก้ ======
+// ===== แก้ =====
 function addItem(){
   menuData.push({name:"เมนูใหม่",price:"0"});
   renderMenu();
@@ -61,7 +60,7 @@ function addItem(){
 function updateName(i,v){menuData[i].name=v;}
 function updatePrice(i,v){menuData[i].price=v;}
 
-// ====== Firebase ======
+// ===== Firebase =====
 async function saveMenu(){
   await setDoc(doc(db,"menu","main"),{
     data:menuData
@@ -82,7 +81,7 @@ async function loadMenu(){
 
 loadMenu();
 
-// ====== ให้ onclick ใช้ได้ ======
+// ===== ให้ปุ่มทำงาน =====
 window.addItem=addItem;
 window.saveMenu=saveMenu;
 window.updateName=updateName;
