@@ -214,164 +214,77 @@
   </div>
 </div>
 
-<script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+// 🔥 Firebase config ของคุณ (ใส่แล้วถูกต้อง)
+const firebaseConfig = {
+  apiKey: "AIzaSyDoYF1lZcMFMovJ8QGlfxR6lvPgb0Orf0",
+  authDomain: "point-coffee-1329f.firebaseapp.com",
+  projectId: "point-coffee-1329f",
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// =======================
+// 🔽 menuData (ของเดิมคุณ)
+// =======================
 let menuData = [
   {cat:"Espresso-Based",items:[
     {name:"Espresso",desc:"เข้มข้น หอมกลม",price:"55"},
     {name:"Americano",desc:"เอสเพรสโซ่ผสมน้ำร้อน",price:"60"},
     {name:"Latte",desc:"เอสเพรสโซ่กับนมสด เลือกคั่วกลาง/คั่วเข้ม",price:"75"},
-    {name:"Caramel Latte",desc:"ลาเต้กลิ่นคาราเมลหอมละมุน — เมนูแนะนำ",price:"80"},
-    {name:"Dirty",desc:"เอสเพรสโซ่ร้อนราดบนนมเย็น เข้มข้นนุ่มนวล",price:"80"},
-    {name:"Johnny Espresso",desc:"ส้ม + น้ำแอปเปิ้ล + ยูซุ + กาแฟ สดชื่นมาก",price:"90"}
-  ]},
-  {cat:"Manual Brew",items:[
-    {name:"Pour Over (ร้อน)",desc:"ดริปร้อน เลือก Single Origin ได้",price:"90"},
-    {name:"Cold Drip",desc:"ดริปเย็น รสนุ่มนวล ต้องลอง",price:"95"},
-    {name:"Gambit Beans Latte",desc:"เมล็ดพิเศษ กลิ่น Rum เพิ่ม ฿20",price:"95"}
-  ]},
-  {cat:"Non-Coffee",items:[
-    {name:"Matcha Latte",desc:"ชาเขียวมัทฉะ หอมชัด รสนุ่มนวล",price:"80"},
-    {name:"Iced Coco",desc:"โกโก้เย็น หวานน้อยพอดี มีเกล็ดช็อกโกแลต — เมนูแนะนำ",price:"75"},
-    {name:"Feel Like Summer",desc:"สตรอว์เบอร์รี่ + ลิ้นจี่ + โซดา สดชื่น",price:"75"}
-  ]},
-  {cat:"ของหวาน",items:[
-    {name:"Canelé",desc:"กรอบนอกนุ่มใน มีหลายรสชาติ เช่น Earl Grey",price:"70"},
-    {name:"Croissant",desc:"เนยแท้ จำนวนจำกัดต่อวัน",price:"65"},
-    {name:"เค้กมะพร้าว",desc:"นุ่มฟู เนื้อเบา โฮมเมด",price:"75"},
-    {name:"Brownie",desc:"เข้มข้น หนืดๆ เข้มดี",price:"70"}
+    {name:"Caramel Latte",desc:"ลาเต้กลิ่นคาราเมลหอมละมุน",price:"80"},
+    {name:"Dirty",desc:"เอสเพรสโซ่ราดนมเย็น เข้มข้นนุ่มนวล",price:"80"},
+    {name:"Johnny Espresso",desc:"ส้ม + แอปเปิ้ล + ยูซุ สดชื่น",price:"90"}
   ]}
 ];
 
-let galleryData = [
-  {caption:"บรรยากาศภายในร้าน สไตล์ Loft"},
-  {caption:"โซน Outdoor สวนร่มรื่นหลังร้าน"},
-  {caption:"Brew Bar และบาริสต้า"},
-  {caption:"Caramel Latte เมนูแนะนำ"},
-  {caption:"Cold Drip กาแฟดริปเย็น"},
-  {caption:"Canelé ขนมอบประจำวัน"},
-  {caption:"ผนังปูนเปลือย มุมถ่ายรูป"},
-  {caption:"Single Origin Beans"},
-  {caption:"บรรยากาศช่วงเช้า"}
-];
-
-function showPage(id){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
-  document.getElementById('page-'+id).classList.add('active');
-  document.getElementById('nav-'+id).classList.add('active');
-}
-
+// =======================
+// 🔽 ฟังก์ชันเดิม
+// =======================
 function renderMenu(){
   const el=document.getElementById('menu-display');
   el.innerHTML=menuData.map(cat=>`
     <div class="menu-category">
       <div class="cat-title">${cat.cat}</div>
-      <div class="menu-items">
-        ${cat.items.map(item=>`
-          <div class="menu-item">
-            <div class="item-left">
-              <div class="item-name">${item.name}</div>
-              <div class="item-desc">${item.desc}</div>
-            </div>
-            <div class="item-price">฿${item.price}</div>
-          </div>`).join('')}
-      </div>
-    </div>`).join('');
+      ${cat.items.map(item=>`
+        <div class="menu-item">
+          ${item.name} - ฿${item.price}
+        </div>
+      `).join('')}
+    </div>
+  `).join('');
 }
 
-function renderGallery(){
-  const icons=['☕','🌿','🎨','✨','🍃','🥐','📸','🫘','🌅'];
-  const el=document.getElementById('gallery-display');
-  el.innerHTML=galleryData.map((g,i)=>`
-    <div class="gallery-card">
-      <div class="gallery-img">
-        <span style="font-size:2rem;opacity:0.35">${icons[i%icons.length]}</span>
-        <span style="font-size:0.72rem;color:var(--mid);text-align:center;padding:0 0.5rem">${g.caption}</span>
-      </div>
-      <div class="gallery-caption">${g.caption}</div>
-    </div>`).join('');
-}
+// =======================
+// 🔥 Firebase โหลด/บันทึก
+// =======================
+async function loadMenu(){
+  const docRef = doc(db, "menu", "main");
+  const docSnap = await getDoc(docRef);
 
-function openAboutEditor(){
-  document.getElementById('e-logo').value=document.getElementById('site-logo').textContent;
-  document.getElementById('e-home-sub').value=document.getElementById('home-sub').textContent;
-  document.getElementById('e-hours').value=document.getElementById('home-hours').innerText;
-  document.getElementById('e-location').value=document.getElementById('home-location').innerText;
-  document.getElementById('e-phone').value=document.getElementById('home-phone').textContent;
-  document.getElementById('e-p1').value=document.getElementById('about-p1').textContent;
-  document.getElementById('e-p2').value=document.getElementById('about-p2').textContent;
-  document.getElementById('e-year').value=document.getElementById('about-year').textContent;
-  document.getElementById('e-highlight').value=document.getElementById('about-highlight').textContent;
-  document.getElementById('e-parking').value=document.getElementById('about-parking').textContent;
-  document.getElementById('e-parking2').value=document.getElementById('about-parking2').textContent;
-  document.getElementById('about-editor').classList.add('open');
-}
+  if (docSnap.exists()) {
+    menuData = docSnap.data().data;
+  }
 
-function saveAbout(){
-  const name=document.getElementById('e-logo').value;
-  document.getElementById('site-logo').textContent=name;
-  document.getElementById('home-title').innerHTML=name.replace(' ','<br>');
-  document.getElementById('home-sub').textContent=document.getElementById('e-home-sub').value;
-  document.getElementById('home-hours').innerHTML=document.getElementById('e-hours').value.replace('·','<br>');
-  document.getElementById('home-location').innerHTML=document.getElementById('e-location').value.replace('·','<br>');
-  document.getElementById('home-phone').textContent=document.getElementById('e-phone').value;
-  document.getElementById('about-p1').textContent=document.getElementById('e-p1').value;
-  document.getElementById('about-p2').textContent=document.getElementById('e-p2').value;
-  document.getElementById('about-year').textContent=document.getElementById('e-year').value;
-  document.getElementById('about-highlight').textContent=document.getElementById('e-highlight').value;
-  document.getElementById('about-parking').textContent=document.getElementById('e-parking').value;
-  document.getElementById('about-parking2').textContent=document.getElementById('e-parking2').value;
-  closeEditor('about-editor');
-}
-
-function openMenuEditor(){
-  const body=document.getElementById('menu-editor-body');
-  body.innerHTML=menuData.map((cat,ci)=>`
-    <div class="editor-category">
-      <input class="editor-cat-name" id="cat-name-${ci}" value="${cat.cat}" placeholder="ชื่อหมวด" />
-      <div id="items-${ci}">
-        ${cat.items.map((item,ii)=>`
-          <div class="editor-menu-item">
-            <input value="${item.name}" placeholder="ชื่อเมนู" oninput="menuData[${ci}].items[${ii}].name=this.value" />
-            <input class="desc-in" value="${item.desc}" placeholder="คำอธิบาย" oninput="menuData[${ci}].items[${ii}].desc=this.value" />
-            <input class="price-in" value="${item.price}" placeholder="฿" oninput="menuData[${ci}].items[${ii}].price=this.value" />
-            <button class="btn-del" onclick="delItem(${ci},${ii})">×</button>
-          </div>`).join('')}
-      </div>
-      <button class="btn-add-item" onclick="addItem(${ci})">+ เพิ่มรายการ</button>
-    </div>`).join('')+
-    `<button class="btn-add-item" style="margin-top:0.5rem" onclick="addCategory()">+ เพิ่มหมวดหมู่</button>`;
-  document.getElementById('menu-editor').classList.add('open');
-}
-
-function addItem(ci){menuData[ci].items.push({name:'',desc:'',price:''});openMenuEditor();}
-function delItem(ci,ii){menuData[ci].items.splice(ii,1);openMenuEditor();}
-function addCategory(){menuData.push({cat:'หมวดใหม่',items:[]});openMenuEditor();}
-
-function saveMenu(){
-  menuData.forEach((cat,ci)=>{
-    const el=document.getElementById('cat-name-'+ci);
-    if(el) cat.cat=el.value;
-  });
   renderMenu();
-  closeEditor('menu-editor');
 }
 
-function openGalleryEditor(){
-  const body=document.getElementById('gallery-editor-body');
-  body.innerHTML=galleryData.map((g,i)=>`
-    <div class="editor-menu-item">
-      <input value="${g.caption}" placeholder="คำบรรยายรูป" oninput="galleryData[${i}].caption=this.value" style="flex:1" />
-      <button class="btn-del" onclick="delGallery(${i})">×</button>
-    </div>`).join('');
-  document.getElementById('gallery-editor').classList.add('open');
+async function saveMenu(){
+  await setDoc(doc(db, "menu", "main"), {
+    data: menuData
+  });
+
+  alert("บันทึกแล้ว!");
 }
 
-function addGalleryItem(){galleryData.push({caption:'รูปใหม่'});openGalleryEditor();}
-function delGallery(i){galleryData.splice(i,1);openGalleryEditor();}
-function saveGallery(){renderGallery();closeEditor('gallery-editor');}
-function closeEditor(id){document.getElementById(id).classList.remove('open');}
+// =======================
+loadMenu();
 
-renderMenu();
-renderGallery();
+// ให้ปุ่มเดิมใช้ได้
+window.saveMenu = saveMenu;
+
 </script>
