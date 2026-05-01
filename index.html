@@ -370,9 +370,7 @@ async function saveMenu(){
   renderMenu();
   closeEditor('menu-editor');
 }
-  menuData.forEach((cat,ci)=>{
-    const el=document.getElementById('cat-name-'+ci);
-    if(el) cat.cat=el.value;
+  
   });
   async function loadMenu(){
   const docRef = doc(db,"menu","main");
