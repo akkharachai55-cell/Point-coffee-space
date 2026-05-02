@@ -1,10 +1,17 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap');
   *{box-sizing:border-box;margin:0;padding:0}
-  :root{
-    --cream:#faf8f4;--warm:#f0ebe0;--dark:#2c2419;--mid:#6b5c48;--accent:#8b6914;--border:#ddd6c8;
-    --font-display:'Cormorant Garamond',serif;--font-body:'DM Sans',sans-serif;
-  }
+  :root {
+  /* โทนสีใหม่: ดำเข้ม ตัดด้วยแดงนีออนและทองหม่น */
+  --cream: #121212;   /* พื้นหลังดำสนิท */
+  --warm: #1e1e1e;    /* พื้นหลังส่วนแก้ไข/กล่องต่างๆ เป็นเทาเข้ม */
+  --dark: #f5f5f5;    /* ตัวหนังสือหลักเป็นสีขาวนวล */
+  --mid: #a0a0a0;     /* ตัวหนังสือรองเป็นสีเทา */
+  --accent: #e63946;  /* สีแดงนีออน (ดึงจากสีไฟในรูป) */
+  --border: #333333;  /* สีเส้นขอบเทาเข้ม */
+  --font-display: 'Cormorant Garamond', serif;
+  --font-body: 'DM Sans', sans-serif;
+}
   body{background:var(--cream);color:var(--dark);font-family:var(--font-body)}
   .site{max-width:900px;margin:0 auto;min-height:600px}
   nav{display:flex;align-items:center;justify-content:space-between;padding:1.2rem 2rem;border-bottom:0.5px solid var(--border);background:var(--cream);position:sticky;top:0;z-index:100}
@@ -81,67 +88,82 @@
   <nav>
     <div class="logo" id="site-logo">POINT Coffee Space</div>
     <div class="nav-links">
-      <a onclick="showPage('home')" class="active" id="nav-home">หน้าแรก</a>
-      <a onclick="showPage('about')" id="nav-about">เกี่ยวกับร้าน</a>
-      <a onclick="showPage('menu')" id="nav-menu">เมนู</a>
-      <a onclick="showPage('gallery')" id="nav-gallery">แกลเลอรี่</a>
+      <a onclick="showPage('home')" class="active" id="nav-home">Home</a>
+      <a onclick="showPage('about')" id="nav-about">About Us</a>
+      <a onclick="showPage('menu')" id="nav-menu">Menu</a>
+      <a onclick="showPage('gallery')" id="nav-gallery">Gallery</a>
     </div>
   </nav>
 
   <!-- HOME -->
-  <div class="page active" id="page-home">
-    <div class="hero">
+ <!-- START HOME PAGE -->
+<div class="page active" id="page-home">
+
+  <!-- 1. ส่วนรูปภาพและข้อความ (Hero) -->
+  <div class="hero">
+    <div class="hero-content">
       <div class="hero-eyebrow">Specialty Coffee · Hat Yai</div>
-      <h1 class="hero-title" id="home-title">POINT<br>Coffee Space</h1>
+      <h1 class="hero-title">POINT<br>Coffee Space</h1>
       <div class="hero-divider"></div>
-      <p class="hero-sub" id="home-sub">ร้านกาแฟ Specialty สไตล์ลอฟต์ใจกลางหาดใหญ่ บาริสต้าพร้อมแนะนำกาแฟที่ใช่สำหรับคุณ ทั้งดริปร้อน ดริปเย็น และ Espresso-based ทุกแก้ว</p>
+      <p class="hero-sub">A loft-style specialty coffee shop in Hat Yai. Our baristas are ready to recommend the perfect cup for you.</p>
       <div style="margin-top:1.5rem">
-        <span class="rating-badge">★ 4.3 · Wongnai · อันดับ #50 จาก 1,713 ร้าน</span>
+        <span class="rating-badge">★ 4.3 · Wongnai · Ranked #50</span>
       </div>
     </div>
-    <div class="info-strip">
-      <div class="info-item">
-        <div class="info-label">เปิด-ปิด</div>
-        <div class="info-value" id="home-hours">ทุกวัน<br>09:00 – 17:30</div>
-      </div>
-      <div class="info-item">
-        <div class="info-label">ที่อยู่</div>
-        <div class="info-value" id="home-location">89 ซอยนุ่มอุทิศ<br>หาดใหญ่ สงขลา 90110</div>
-      </div>
-      <div class="info-item">
-        <div class="info-label">โทรศัพท์</div>
-        <div class="info-value" id="home-phone">065-603-5157</div>
-      </div>
+    <div style="width:100%; height:500px; overflow:hidden; border-radius:12px; border:0.5px solid var(--border); box-shadow:15px 15px 0px var(--warm);">
+      <img src="https://i.postimg.cc/T2r3Zq5S/480198949-2940145616152307-7889240578333013815-n.jpg" style="width:100%; height:100%; object-fit:cover;">
     </div>
   </div>
+
+  <!-- 2. แถบข้อมูล 3 อัน (ย้ายกลับมาไว้ตรงนี้แล้ว) -->
+  <div class="info-strip">
+    <div class="info-item">
+      <div class="info-label">Hours</div>
+      <div class="info-value">Daily<br>09:00 – 17:30</div>
+    </div>
+    <div class="info-item">
+      <div class="info-label">Location</div>
+      <a href="https://maps.app.goo.gl/22wYcyifpX7EeM1u9" target="_blank" style="text-decoration:none; color:inherit;">
+        <div class="info-value" style="cursor:pointer;">89 Soi Num Uthit<br>Hat Yai, Songkhla 90110</div>
+      </a>
+    </div>
+    <div class="info-item">
+      <div class="info-label">Phone</div>
+      <div class="info-value">065-603-5157</div>
+    </div>
+  </div>
+
+</div> 
+<!-- END HOME PAGE -->
+
 
   <!-- ABOUT -->
   <div class="page" id="page-about">
     <div class="section-header">
-      <h2 class="section-title">เกี่ยวกับร้าน</h2>
-      <button class="edit-btn" onclick="openAboutEditor()">แก้ไข</button>
+      <h2 class="section-title">About Us</h2>
+      <button class="edit-btn" onclick="openAboutEditor()">Edit</button>
     </div>
     <div class="about-grid">
       <div class="about-main">
-        <p id="about-p1">POINT Coffee Space คือร้านกาแฟ Specialty สไตล์ลอฟต์ที่ตั้งอยู่บนซอยนุ่มอุทิศ หาดใหญ่ ร้านตกแต่งด้วยผนังปูนเปลือยและโครงสร้างเหล็กสีดำ ให้ความรู้สึกเท่และมีสไตล์เป็นของตัวเอง</p>
-        <p id="about-p2">บาริสต้าของเราพร้อมสอบถามและแนะนำเมนูที่เหมาะกับคุณ ไม่ว่าจะชอบกาแฟแบบไหน คั่วกลางหรือคั่วเข้ม ร้อนหรือเย็น เราเลือกระดับการคั่วได้ มีทั้งโซน Indoor ติดแอร์ และ Outdoor สวนร่มรื่นด้านหลัง</p>
+        <p id="about-p1">POINT Coffee Space is a loft-style specialty coffee shop located in Soi Num Uthit, Hat Yai. Decorated with raw concrete walls and black steel structures, it offers a cool and unique atmosphere.</p>
+        <p id="about-p2">Our baristas are happy to recommend menus tailored to your taste. Whether you prefer medium or dark roast, hot or iced, we have it all. Enjoy our air-conditioned indoor area or the lush outdoor garden.</p>
       </div>
       <div class="about-details">
         <div class="detail-item">
-          <div class="detail-item-label">สไตล์ร้าน</div>
-          <div class="detail-item-value" id="about-year">Loft · Industrial · ปูนเปลือย</div>
+          <div class="detail-item-label">Shop Style</div>
+          <div class="detail-item-value" id="about-year">Loft · Industrial · Concrete</div>
         </div>
         <div class="detail-item">
-          <div class="detail-item-label">จุดเด่น</div>
-          <div class="detail-item-value" id="about-highlight">Specialty Coffee · Single Origin · Manual Brew · เลือกระดับการคั่วได้</div>
+          <div class="detail-item-label">Highlights</div>
+          <div class="detail-item-value" id="about-highlight">Specialty Coffee · Single Origin · Manual Brew · Customizable Roasts</div>
         </div>
         <div class="detail-item">
-          <div class="detail-item-label">บรรยากาศ</div>
-          <div class="detail-item-value" id="about-parking">มี Wi-Fi · Indoor ติดแอร์ · Outdoor สวนหลังร้าน · เหมาะทำงาน-นัดเพื่อน</div>
+          <div class="detail-item-label">Atmosphere</div>
+          <div class="detail-item-value" id="about-parking">Free Wi-Fi · Indoor AC · Outdoor Garden · Perfect for Work or Friends</div>
         </div>
         <div class="detail-item">
-          <div class="detail-item-label">ที่จอดรถ</div>
-          <div class="detail-item-value" id="about-parking2">มีที่จอดรถหน้าร้าน อยู่ในซอย ไม่วุ่นวาย</div>
+          <div class="detail-item-label">Parking</div>
+          <div class="detail-item-value" id="about-parking2">On-site parking available in a quiet alley</div>
         </div>
       </div>
     </div>
@@ -150,8 +172,8 @@
   <!-- MENU -->
   <div class="page" id="page-menu">
     <div class="section-header">
-      <h2 class="section-title">เมนู</h2>
-      <button class="edit-btn" onclick="openMenuEditor()">แก้ไขเมนู</button>
+      <h2 class="section-title">Menu</h2>
+      <button class="edit-btn" onclick="openMenuEditor()">Edit Menu</button>
     </div>
     <div id="menu-display"></div>
   </div>
@@ -159,8 +181,8 @@
   <!-- GALLERY -->
   <div class="page" id="page-gallery">
     <div class="section-header">
-      <h2 class="section-title">แกลเลอรี่</h2>
-      <button class="edit-btn" onclick="openGalleryEditor()">แก้ไข</button>
+      <h2 class="section-title">Gallery</h2>
+      <button class="edit-btn" onclick="openGalleryEditor()">Edit</button>
     </div>
     <div class="gallery-grid" id="gallery-display"></div>
   </div>
@@ -169,21 +191,21 @@
 <!-- ABOUT EDITOR -->
 <div class="editor-overlay" id="about-editor">
   <div class="editor-box">
-    <div class="editor-title">แก้ไขข้อมูลร้าน</div>
-    <div class="field-group"><label class="field-label">ชื่อร้าน</label><input class="field-input" id="e-logo" /></div>
-    <div class="field-group"><label class="field-label">คำบรรยายหน้าแรก</label><textarea class="field-input" id="e-home-sub"></textarea></div>
-    <div class="field-group"><label class="field-label">เวลาเปิด-ปิด</label><input class="field-input" id="e-hours" /></div>
-    <div class="field-group"><label class="field-label">ที่อยู่</label><input class="field-input" id="e-location" /></div>
-    <div class="field-group"><label class="field-label">เบอร์โทรศัพท์</label><input class="field-input" id="e-phone" /></div>
-    <div class="field-group"><label class="field-label">เกี่ยวกับร้าน (ย่อหน้า 1)</label><textarea class="field-input" id="e-p1"></textarea></div>
-    <div class="field-group"><label class="field-label">เกี่ยวกับร้าน (ย่อหน้า 2)</label><textarea class="field-input" id="e-p2"></textarea></div>
-    <div class="field-group"><label class="field-label">สไตล์ร้าน</label><input class="field-input" id="e-year" /></div>
-    <div class="field-group"><label class="field-label">จุดเด่น</label><input class="field-input" id="e-highlight" /></div>
-    <div class="field-group"><label class="field-label">บรรยากาศ / สิ่งอำนวยความสะดวก</label><input class="field-input" id="e-parking" /></div>
-    <div class="field-group"><label class="field-label">ที่จอดรถ</label><input class="field-input" id="e-parking2" /></div>
+    <div class="editor-title">Edit Shop Information</div>
+    <div class="field-group"><label class="field-label">Shop Name</label><input class="field-input" id="e-logo" /></div>
+    <div class="field-group"><label class="field-label">Hero Subtitle</label><textarea class="field-input" id="e-home-sub"></textarea></div>
+    <div class="field-group"><label class="field-label">Opening Hours</label><input class="field-input" id="e-hours" /></div>
+    <div class="field-group"><label class="field-label">Location</label><input class="field-input" id="e-location" /></div>
+    <div class="field-group"><label class="field-label">Phone Number</label><input class="field-input" id="e-phone" /></div>
+    <div class="field-group"><label class="field-label">About (Paragraph 1)</label><textarea class="field-input" id="e-p1"></textarea></div>
+    <div class="field-group"><label class="field-label">About (Paragraph 2)</label><textarea class="field-input" id="e-p2"></textarea></div>
+    <div class="field-group"><label class="field-label">Shop Style</label><input class="field-input" id="e-year" /></div>
+    <div class="field-group"><label class="field-label">Highlights</label><input class="field-input" id="e-highlight" /></div>
+    <div class="field-group"><label class="field-label">Atmosphere / Amenities</label><input class="field-input" id="e-parking" /></div>
+    <div class="field-group"><label class="field-label">Parking Info</label><input class="field-input" id="e-parking2" /></div>
     <div class="editor-actions">
-      <button class="btn-save" onclick="saveAbout()">บันทึก</button>
-      <button class="btn-cancel" onclick="closeEditor('about-editor')">ยกเลิก</button>
+      <button class="btn-save" onclick="saveAbout()">Save</button>
+      <button class="btn-cancel" onclick="closeEditor('about-editor')">Cancel</button>
     </div>
   </div>
 </div>
@@ -191,11 +213,11 @@
 <!-- MENU EDITOR -->
 <div class="editor-overlay" id="menu-editor">
   <div class="editor-box">
-    <div class="editor-title">แก้ไขเมนู</div>
+    <div class="editor-title">Edit Menu</div>
     <div id="menu-editor-body"></div>
     <div class="editor-actions">
-      <button class="btn-save" onclick="saveMenu()">บันทึก</button>
-      <button class="btn-cancel" onclick="closeEditor('menu-editor')">ยกเลิก</button>
+      <button class="btn-save" onclick="saveMenu()">Save</button>
+      <button class="btn-cancel" onclick="closeEditor('menu-editor')">Cancel</button>
     </div>
   </div>
 </div>
@@ -203,70 +225,90 @@
 <!-- GALLERY EDITOR -->
 <div class="editor-overlay" id="gallery-editor">
   <div class="editor-box">
-    <div class="editor-title">แก้ไขแกลเลอรี่</div>
+    <div class="editor-title">Edit Gallery</div>
     <div id="gallery-editor-body"></div>
-    <button class="btn-add-item" onclick="addGalleryItem()">+ เพิ่มรูปภาพ</button>
+    <button class="btn-add-item" onclick="addGalleryItem()">+ Add Image</button>
     <div class="editor-actions" style="margin-top:1.5rem">
-      <button class="btn-save" onclick="saveGallery()">บันทึก</button>
-      <button class="btn-cancel" onclick="closeEditor('gallery-editor')">ยกเลิก</button>
+      <button class="btn-save" onclick="saveGallery()">Save</button>
+      <button class="btn-cancel" onclick="closeEditor('gallery-editor')">Cancel</button>
     </div>
   </div>
 </div>
 
 <script>
+// 1. Menu Data
 let menuData = [
-  {cat:"Espresso-Based",items:[
-    {name:"Espresso",desc:"เข้มข้น หอมกลม",price:"55"},
-    {name:"Americano",desc:"เอสเพรสโซ่ผสมน้ำร้อน",price:"60"},
-    {name:"Latte",desc:"เอสเพรสโซ่กับนมสด เลือกคั่วกลาง/คั่วเข้ม",price:"75"},
-    {name:"Caramel Latte",desc:"ลาเต้กลิ่นคาราเมลหอมละมุน — เมนูแนะนำ",price:"80"},
-    {name:"Dirty",desc:"เอสเพรสโซ่ร้อนราดบนนมเย็น เข้มข้นนุ่มนวล",price:"80"},
-    {name:"Johnny Espresso",desc:"ส้ม + น้ำแอปเปิ้ล + ยูซุ + กาแฟ สดชื่นมาก",price:"90"}
-  ]},
-  {cat:"Manual Brew",items:[
-    {name:"Pour Over (ร้อน)",desc:"ดริปร้อน เลือก Single Origin ได้",price:"90"},
-    {name:"Cold Drip",desc:"ดริปเย็น รสนุ่มนวล ต้องลอง",price:"95"},
-    {name:"Gambit Beans Latte",desc:"เมล็ดพิเศษ กลิ่น Rum เพิ่ม ฿20",price:"95"}
-  ]},
-  {cat:"Non-Coffee",items:[
-    {name:"Matcha Latte",desc:"ชาเขียวมัทฉะ หอมชัด รสนุ่มนวล",price:"80"},
-    {name:"Iced Coco",desc:"โกโก้เย็น หวานน้อยพอดี มีเกล็ดช็อกโกแลต — เมนูแนะนำ",price:"75"},
-    {name:"Feel Like Summer",desc:"สตรอว์เบอร์รี่ + ลิ้นจี่ + โซดา สดชื่น",price:"75"}
-  ]},
-  {cat:"ของหวาน",items:[
-    {name:"Canelé",desc:"กรอบนอกนุ่มใน มีหลายรสชาติ เช่น Earl Grey",price:"70"},
-    {name:"Croissant",desc:"เนยแท้ จำนวนจำกัดต่อวัน",price:"65"},
-    {name:"เค้กมะพร้าว",desc:"นุ่มฟู เนื้อเบา โฮมเมด",price:"75"},
-    {name:"Brownie",desc:"เข้มข้น หนืดๆ เข้มดี",price:"70"}
-  ]}
+  {
+    cat: "Espresso-Based",
+    items: [
+      { name: "Espresso", desc: "Rich and aromatic", price: "55" },
+      { name: "Americano", desc: "Espresso with hot water", price: "60" },
+      { name: "Latte", desc: "Espresso with milk, choose your roast", price: "75" },
+      { name: "Caramel Latte", desc: "Sweet and smooth caramel latte — Recommended", price: "80" },
+      { name: "Dirty", desc: "Hot espresso over cold milk, rich and creamy", price: "80" },
+      { name: "Johnny Espresso", desc: "Orange + Apple + Yuzu + Espresso, very refreshing", price: "90" }
+    ]
+  },
+  {
+    cat: "Manual Brew",
+    items: [
+      { name: "Pour Over (Hot)", desc: "Choice of Single Origin beans", price: "90" },
+      { name: "Cold Drip", desc: "Smooth and clean taste, must try", price: "95" },
+      { name: "Gambit Beans Latte", desc: "Special beans with Rum aroma +฿20", price: "95" }
+    ]
+  },
+  {
+    cat: "Non-Coffee",
+    items: [
+      { name: "Matcha Latte", desc: "Authentic matcha with smooth milk", price: "80" },
+      { name: "Iced Cocoa", desc: "Perfectly less sweet with chocolate flakes — Recommended", price: "75" },
+      { name: "Feel Like Summer", desc: "Strawberry + Lychee + Soda, refreshing", price: "75" }
+    ]
+  }
 ];
 
+// 2. Gallery Data
 let galleryData = [
-  {caption:"บรรยากาศภายในร้าน สไตล์ Loft"},
-  {caption:"โซน Outdoor สวนร่มรื่นหลังร้าน"},
-  {caption:"Brew Bar และบาริสต้า"},
-  {caption:"Caramel Latte เมนูแนะนำ"},
-  {caption:"Cold Drip กาแฟดริปเย็น"},
-  {caption:"Canelé ขนมอบประจำวัน"},
-  {caption:"ผนังปูนเปลือย มุมถ่ายรูป"},
-  {caption:"Single Origin Beans"},
-  {caption:"บรรยากาศช่วงเช้า"}
+  { caption: "Indoor Atmosphere", image: "https://i.postimg.cc/zX9p4HP3/683572597-26390606363974598-2692441547551213194-n.jpg" },
+  { caption: "Outdoor Seating", image: "https://i.postimg.cc/9QHWNrWm/686368334-4485746741706319-8801986974888578993-n.jpg" },
+  { caption: "Signature Menu", image: "https://i.postimg.cc/N0nKPQL2/018GIQ4B97A7EA5055DA9Cmx.webp" },
+  { caption: "Bakery", image: "https://i.postimg.cc/G2fBBdvG/50927224-1165653633601523-1281233751359094784-n.jpg" },
+  { caption: "Check-in Corner", image: "https://i.postimg.cc/5Nr6nxGt/476877946-2933602820139920-149091794086735086-n.jpg" },
+  { caption: "Storefront View", image: "https://i.postimg.cc/NjxkK2FK/66721557-1276035672563318-3177366992550100992-n.jpg" },
 ];
 
-function showPage(id){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
-  document.getElementById('page-'+id).classList.add('active');
-  document.getElementById('nav-'+id).classList.add('active');
+// Navigation function
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  const targetPage = document.getElementById('page-' + id);
+  const targetNav = document.getElementById('nav-' + id);
+  if (targetPage) targetPage.classList.add('active');
+  if (targetNav) targetNav.classList.add('active');
 }
 
-function renderMenu(){
-  const el=document.getElementById('menu-display');
-  el.innerHTML=menuData.map(cat=>`
+// Render Gallery
+function renderGallery() {
+  const el = document.getElementById('gallery-display');
+  if (!el) return;
+  el.innerHTML = galleryData.map(g => `
+    <div class="gallery-card">
+      <div class="gallery-img">
+        <img src="${g.image || 'https://via.placeholder.com/300'}" style="width:100%;height:100%;object-fit:cover;" />
+      </div>
+      <div class="gallery-caption">${g.caption}</div>
+    </div>`).join('');
+}
+
+// Render Menu
+function renderMenu() {
+  const el = document.getElementById('menu-display');
+  if (!el) return;
+  el.innerHTML = menuData.map(cat => `
     <div class="menu-category">
       <div class="cat-title">${cat.cat}</div>
       <div class="menu-items">
-        ${cat.items.map(item=>`
+        ${cat.items.map(item => `
           <div class="menu-item">
             <div class="item-left">
               <div class="item-name">${item.name}</div>
@@ -278,99 +320,195 @@ function renderMenu(){
     </div>`).join('');
 }
 
-function renderGallery(){
-  const icons=['☕','🌿','🎨','✨','🍃','🥐','📸','🫘','🌅'];
-  const el=document.getElementById('gallery-display');
-  el.innerHTML=galleryData.map((g,i)=>`
-    <div class="gallery-card">
-      <div class="gallery-img">
-        <span style="font-size:2rem;opacity:0.35">${icons[i%icons.length]}</span>
-        <span style="font-size:0.72rem;color:var(--mid);text-align:center;padding:0 0.5rem">${g.caption}</span>
-      </div>
-      <div class="gallery-caption">${g.caption}</div>
+// Editor Handlers
+function closeEditor(id) { document.getElementById(id).classList.remove('open'); }
+
+function openGalleryEditor() {
+  const body = document.getElementById('gallery-editor-body');
+  body.innerHTML = galleryData.map((g, i) => `
+    <div class="editor-menu-item" style="flex-direction:column; align-items:stretch; gap:5px; border-bottom:1px solid #eee; padding:10px 0;">
+      <input class="field-input" value="${g.caption}" placeholder="Caption" oninput="galleryData[${i}].caption=this.value" />
+      <input class="field-input" value="${g.image || ''}" placeholder="Image URL" oninput="galleryData[${i}].image=this.value" />
+      <button class="btn-del" onclick="delGallery(${i})">Delete Image</button>
     </div>`).join('');
+  document.getElementById('gallery-editor').classList.add('open');
 }
 
-function openAboutEditor(){
-  document.getElementById('e-logo').value=document.getElementById('site-logo').textContent;
-  document.getElementById('e-home-sub').value=document.getElementById('home-sub').textContent;
-  document.getElementById('e-hours').value=document.getElementById('home-hours').innerText;
-  document.getElementById('e-location').value=document.getElementById('home-location').innerText;
-  document.getElementById('e-phone').value=document.getElementById('home-phone').textContent;
-  document.getElementById('e-p1').value=document.getElementById('about-p1').textContent;
-  document.getElementById('e-p2').value=document.getElementById('about-p2').textContent;
-  document.getElementById('e-year').value=document.getElementById('about-year').textContent;
-  document.getElementById('e-highlight').value=document.getElementById('about-highlight').textContent;
-  document.getElementById('e-parking').value=document.getElementById('about-parking').textContent;
-  document.getElementById('e-parking2').value=document.getElementById('about-parking2').textContent;
-  document.getElementById('about-editor').classList.add('open');
-}
+function addGalleryItem() { galleryData.push({ caption: 'New Image', image: '' }); openGalleryEditor(); }
+function delGallery(i) { galleryData.splice(i, 1); openGalleryEditor(); }
+function saveGallery() { renderGallery(); closeEditor('gallery-editor'); }
 
-function saveAbout(){
-  const name=document.getElementById('e-logo').value;
-  document.getElementById('site-logo').textContent=name;
-  document.getElementById('home-title').innerHTML=name.replace(' ','<br>');
-  document.getElementById('home-sub').textContent=document.getElementById('e-home-sub').value;
-  document.getElementById('home-hours').innerHTML=document.getElementById('e-hours').value.replace('·','<br>');
-  document.getElementById('home-location').innerHTML=document.getElementById('e-location').value.replace('·','<br>');
-  document.getElementById('home-phone').textContent=document.getElementById('e-phone').value;
-  document.getElementById('about-p1').textContent=document.getElementById('e-p1').value;
-  document.getElementById('about-p2').textContent=document.getElementById('e-p2').value;
-  document.getElementById('about-year').textContent=document.getElementById('e-year').value;
-  document.getElementById('about-highlight').textContent=document.getElementById('e-highlight').value;
-  document.getElementById('about-parking').textContent=document.getElementById('e-parking').value;
-  document.getElementById('about-parking2').textContent=document.getElementById('e-parking2').value;
-  closeEditor('about-editor');
-}
-
-function openMenuEditor(){
-  const body=document.getElementById('menu-editor-body');
-  body.innerHTML=menuData.map((cat,ci)=>`
-    <div class="editor-category">
-      <input class="editor-cat-name" id="cat-name-${ci}" value="${cat.cat}" placeholder="ชื่อหมวด" />
+function openMenuEditor() {
+  const body = document.getElementById('menu-editor-body');
+  if (!body) return;
+  body.innerHTML = menuData.map((cat, ci) => `
+    <div class="editor-category" style="margin-bottom:20px; border-bottom:1px solid #eee; padding-bottom:15px;">
+      <input class="editor-cat-name" id="cat-name-${ci}" value="${cat.cat}" placeholder="Category Name" style="font-weight:bold; font-size:1.1rem; margin-bottom:10px;" />
       <div id="items-${ci}">
-        ${cat.items.map((item,ii)=>`
-          <div class="editor-menu-item">
-            <input value="${item.name}" placeholder="ชื่อเมนู" oninput="menuData[${ci}].items[${ii}].name=this.value" />
-            <input class="desc-in" value="${item.desc}" placeholder="คำอธิบาย" oninput="menuData[${ci}].items[${ii}].desc=this.value" />
-            <input class="price-in" value="${item.price}" placeholder="฿" oninput="menuData[${ci}].items[${ii}].price=this.value" />
+        ${cat.items.map((item, ii) => `
+          <div class="editor-menu-item" style="display:flex; gap:5px; margin-bottom:5px;">
+            <input value="${item.name}" placeholder="Menu Name" oninput="menuData[${ci}].items[${ii}].name=this.value" style="flex:2;" />
+            <input class="desc-in" value="${item.desc}" placeholder="Description" oninput="menuData[${ci}].items[${ii}].desc=this.value" style="flex:3;" />
+            <input class="price-in" value="${item.price}" placeholder="฿" oninput="menuData[${ci}].items[${ii}].price=this.value" style="flex:1; text-align:right;" />
             <button class="btn-del" onclick="delItem(${ci},${ii})">×</button>
           </div>`).join('')}
       </div>
-      <button class="btn-add-item" onclick="addItem(${ci})">+ เพิ่มรายการ</button>
-    </div>`).join('')+
-    `<button class="btn-add-item" style="margin-top:0.5rem" onclick="addCategory()">+ เพิ่มหมวดหมู่</button>`;
+      <button class="btn-add-item" onclick="addItem(${ci})">+ Add Item to Category</button>
+    </div>`).join('') +
+    `<button class="btn-add-item" style="margin-top:10px; background:#f0ebe0;" onclick="addCategory()">+ Add New Category</button>`;
   document.getElementById('menu-editor').classList.add('open');
 }
 
-function addItem(ci){menuData[ci].items.push({name:'',desc:'',price:''});openMenuEditor();}
-function delItem(ci,ii){menuData[ci].items.splice(ii,1);openMenuEditor();}
-function addCategory(){menuData.push({cat:'หมวดใหม่',items:[]});openMenuEditor();}
+function addItem(ci) { 
+  menuData[ci].items.push({ name: '', desc: '', price: '' }); 
+  openMenuEditor(); 
+}
 
-function saveMenu(){
-  menuData.forEach((cat,ci)=>{
-    const el=document.getElementById('cat-name-'+ci);
-    if(el) cat.cat=el.value;
+function delItem(ci, ii) { 
+  menuData[ci].items.splice(ii, 1); 
+  openMenuEditor(); 
+}
+
+function addCategory() { 
+  menuData.push({ cat: 'New Category', items: [] }); 
+  openMenuEditor(); 
+}
+
+function saveMenu() {
+  menuData.forEach((cat, ci) => {
+    const el = document.getElementById('cat-name-' + ci);
+    if (el) cat.cat = el.value;
   });
   renderMenu();
   closeEditor('menu-editor');
 }
 
-function openGalleryEditor(){
-  const body=document.getElementById('gallery-editor-body');
-  body.innerHTML=galleryData.map((g,i)=>`
-    <div class="editor-menu-item">
-      <input value="${g.caption}" placeholder="คำบรรยายรูป" oninput="galleryData[${i}].caption=this.value" style="flex:1" />
-      <button class="btn-del" onclick="delGallery(${i})">×</button>
-    </div>`).join('');
-  document.getElementById('gallery-editor').classList.add('open');
-}
-
-function addGalleryItem(){galleryData.push({caption:'รูปใหม่'});openGalleryEditor();}
-function delGallery(i){galleryData.splice(i,1);openGalleryEditor();}
-function saveGallery(){renderGallery();closeEditor('gallery-editor');}
-function closeEditor(id){document.getElementById(id).classList.remove('open');}
-
+// Initial Rendering
 renderMenu();
 renderGallery();
+</script>
+```[cite: 1]
+<style>
+  /* 1. เอฟเฟกต์ทำให้เนื้อหาค่อยๆ ปรากฏตอนเลื่อนหน้าจอ */
+  .hero, .info-strip, .menu-category, .gallery-card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+  }
+  .reveal {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* 2. ปุ่ม Back to Top สวยๆ มุมขวา */
+  #backToTop {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: var(--accent);
+    color: white;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+    opacity: 0;
+    transition: 0.3s;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(230, 57, 70, 0.4);
+  }
+  #backToTop.show { opacity: 1; }
+</style>
+
+<button id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
+
+<script>
+  // ฟังก์ชันทำให้ธาตุต่างๆ ค่อยๆ ปรากฏ (Scroll Reveal)
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('reveal');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.hero, .info-strip, .menu-category, .gallery-card').forEach(el => observer.observe(el));
+
+  // ฟังก์ชันแสดง/ซ่อนปุ่ม Back to Top
+  window.addEventListener('scroll', () => {
+    const btn = document.getElementById('backToTop');
+    if (window.scrollY > 300) btn.classList.add('show');
+    else btn.classList.remove('show');
+  });
+
+  // ฟังก์ชันคลิกที่รูปแล้วขยายใหญ่ (Light Box)
+  document.addEventListener('click', (e) => {
+    if (e.target.tagName === 'IMG' && !e.target.closest('nav')) {
+      const modal = document.createElement('div');
+      modal.style = "position:fixed; inset:0; background:rgba(0,0,0,0.9); z-index:2000; display:flex; align-items:center; justify-content:center; cursor:zoom-out;";
+      modal.innerHTML = `<img src="${e.target.src}" style="max-width:90%; max-height:90%; border-radius:8px; box-shadow:0 0 20px rgba(255,255,255,0.1);">`;
+      modal.onclick = () => modal.remove();
+      document.body.appendChild(modal);
+    }
+  });
+</script>
+<script>
+  function rebuildAboutPage() {
+    const aboutPage = document.getElementById('page-about');
+    if (!aboutPage) return;
+
+    // 1. กำหนดข้อมูลที่ต้องการให้แสดง (ใส่ให้ครบตามที่คุณต้องการ)
+    const aboutText = "POINT Coffee Space is a loft-style specialty coffee shop located in Soi Num Uthit, Hat Yai. Decorated with raw concrete walls and black steel structures, it offers a cool and unique atmosphere. Our baristas are ready to recommend the perfect cup for you.";
+    
+    const shopDetails = [
+      { title: "SHOP STYLE", desc: "Loft · Industrial · Concrete" },
+      { title: "HIGHLIGHTS", desc: "Specialty Coffee · Single Origin · Manual Brew · Customizable Roasts" },
+      { title: "ATMOSPHERE", desc: "Free Wi-Fi · Indoor AC · Outdoor Garden · Perfect for Work or Friends" },
+      { title: "PARKING", desc: "On-site parking available in a quiet alley" }
+    ];
+
+    // 2. จัดโครงสร้างหน้าใหม่ทั้งหมด
+    aboutPage.innerHTML = `
+      <div class="section-header">
+        <h2 class="section-title">About Us</h2>
+      </div>
+      <div style="display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 3.5rem; margin-top: 3rem; align-items: start;">
+        
+        <!-- ฝั่งซ้าย: รูปภาพบรรยากาศ -->
+        <div style="position: sticky; top: 100px;">
+          <div style="width: 100%; height: 550px; overflow: hidden; border-radius: 20px; border: 0.5px solid var(--border); box-shadow: 20px 20px 0px var(--warm);">
+            <img src="https://i.postimg.cc/LXSjp4vM/118126348-1626622167504665-9083191698149345439-n.jpg" 
+                 style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
+        </div>
+
+        <!-- ฝั่งขวา: ข้อความและกล่องข้อมูลครบชุด -->
+        <div>
+          <p style="font-size: 1.05rem; line-height: 1.9; color: var(--mid); margin-bottom: 2.5rem; text-align: justify;">
+            ${aboutText}
+          </p>
+          
+          <div id="details-container">
+            ${shopDetails.map(item => `
+              <div style="background: var(--warm); border: 0.5px solid var(--border); padding: 1.5rem; border-radius: 15px; margin-bottom: 1.2rem; transition: 0.3s;">
+                <div style="color: var(--accent); font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.6rem; font-weight: 500;">
+                  ${item.title}
+                </div>
+                <div style="font-size: 0.95rem; color: var(--dark); line-height: 1.5;">
+                  ${item.desc}
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+      </div>
+    `;
+  }
+
+  // เรียกใช้งานทันที
+  window.addEventListener('DOMContentLoaded', rebuildAboutPage);
 </script>
